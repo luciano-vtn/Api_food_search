@@ -1,5 +1,5 @@
 {
-  "name": "food-search",
+  "name": "food_search",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

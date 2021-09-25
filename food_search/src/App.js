@@ -1,9 +1,17 @@
-
-import './App.css';
+import React from 'react';
+import Home from './pages/home';
+import { Reset } from 'styled-reset';
+import { ThemeProvider} from 'styled-components';
+import theme from './theme';
 
 function App() {
   return (
-    <div><h1>Inicio do Projeto</h1></div>
+
+      <ThemeProvider theme={theme}>
+        <Reset/>
+        <Home/>
+      </ThemeProvider>
+
   );
 }
 

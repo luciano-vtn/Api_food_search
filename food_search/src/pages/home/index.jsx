@@ -5,7 +5,7 @@ import MaterialIcon from '@material/react-material-icon';
 
 import logo from "../../assets/logo.svg";
 
-import { Container, Search, Logo, WrapperGlobal, Map } from './styled';
+import { Container, Search, Logo, WrapperGlobal, Map, CarouselTitle } from './styled';
 
 const Home = () => { 
 
@@ -27,6 +27,7 @@ const Home = () => {
                     onChange={(e) => setImputValue(e.target.value)}
                 />
                 </TextField>
+                <CarouselTitle>"Na sua Área"</CarouselTitle>
             </Search>        
         </Container>
 

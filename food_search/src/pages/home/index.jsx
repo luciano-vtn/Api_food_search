@@ -1,6 +1,42 @@
-import React from "react";
-import {Container} from './styled';
+import React, {useState} from "react";
+import TextField, {Input} from '@material/react-text-field';
+import MaterialIcon from '@material/react-material-icon';
 
-const Home = () => <Container><h1>'Busca de Restaurantes'</h1></Container>
+
+import logo from "../../assets/logo.svg";
+
+import { Container, Search, Logo, WrapperGlobal, Map } from './styled';
+
+const Home = () => { 
+
+    const [imputValue,  setImputValue] = useState('');
+
+    return(
+    <WrapperGlobal>
+        <Container>
+            <Search>
+                <Logo src={logo} alt="Logo do Restaurante"/>
+
+                <TextField
+                    label='Pesquisar Restaurantes'
+                    outlined	
+                    trailingIcon={<MaterialIcon role="button" icon="search"/>}
+                >
+                <Input
+                    value={imputValue}
+                    onChange={(e) => setImputValue(e.target.value)}
+                />
+                </TextField>
+            </Search>        
+        </Container>
+
+        <Map/>
+    </WrapperGlobal>
+
+        
+    )
+};
+
+    
 
 export default Home;

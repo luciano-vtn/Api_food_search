@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@material/react-material-icon": "^0.15.0",
+    "@material/react-text-field": "^0.15.0",
     "styled-components": "^5.3.1",
     "styled-reset": "^4.3.4"
   }

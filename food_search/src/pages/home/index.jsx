@@ -1,15 +1,28 @@
 import React, {useState} from "react";
+//import Slider from "react-slick";
+
 import TextField, {Input} from '@material/react-text-field';
 import MaterialIcon from '@material/react-material-icon';
 
 
 import logo from "../../assets/logo.svg";
+import restaurante from "../../assets/restaurante-fake.png"
+import {Card} from "../../components";
 
-import { Container, Search, Logo, WrapperGlobal, Map, CarouselTitle } from './styled';
+import { Container, Carousel, Search, Logo, WrapperGlobal, Map, CarouselTitle } from './styled';
 
 const Home = () => { 
 
     const [imputValue,  setImputValue] = useState('');
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        adaptiveHeight: true,
+      };
 
     return(
     <WrapperGlobal>
@@ -28,6 +41,15 @@ const Home = () => {
                 />
                 </TextField>
                 <CarouselTitle>"Na sua Área"</CarouselTitle>
+                <Carousel {...settings}>
+                   <Card photo={restaurante}/>
+                   <Card photo={restaurante}/>
+                   <Card photo={restaurante}/>
+                   <Card photo={restaurante}/>
+                   <Card photo={restaurante}/>
+                   <Card photo={restaurante}/>
+                   <Card photo={restaurante}/>
+                </Carousel>
             </Search>        
         </Container>
 

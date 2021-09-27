@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import Slider from 'react-slick';
+
+
 
 
 export const WrapperGlobal = styled.div`//WrapperGlobal => Area do site;
@@ -32,6 +35,13 @@ export const Logo = styled.img`
 export const Map = styled.div`
     background-color: #00CED1;
     width: 100vw;
+`;
+
+export const Carousel = styled(Slider)`
+    .slick-styled{
+        margin-right: 5px;
+    }
+
 `;
     
 export const CarouselTitle = styled.h1`

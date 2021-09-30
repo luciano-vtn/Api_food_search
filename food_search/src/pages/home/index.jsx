@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useSelector } from "react-redux";
 
 import TextField, {Input} from '@material/react-text-field';
 import MaterialIcon from '@material/react-material-icon';
@@ -13,7 +14,10 @@ import { Container, Carousel, Search, Logo, WrapperGlobal, CarouselTitle } from 
 const Home = () => { 
 
     const [imputValue,  setImputValue] = useState('');
+    const [query, setQuery] =  useState (null);
     const [modalOpened, setModalOpened] = useState(true);
+
+    const { restaurants } = useSelector ((state) => state.restaurants);
 
     const settings = {
         dots: true,
@@ -23,6 +27,15 @@ const Home = () => {
         slidesToScroll: 4,
         adaptiveHeight: true,
       };
+
+      function handleKeyPress( e ) {
+          
+          if (e.key === 'Enter') {
+
+              setQuery(imputValue);
+
+          }
+      }
 
     return(
     <WrapperGlobal>
@@ -37,23 +50,33 @@ const Home = () => {
                 >
                 <Input
                     value={imputValue}
+                    onKeyPress={handleKeyPress}
                     onChange={(e) => setImputValue(e.target.value)}
                 />
                 </TextField>
                 <CarouselTitle>"Na sua Área"</CarouselTitle>
                 <Carousel {...settings}>
-                   <Card photo={restaurante} title="nome/restaurante"/>
-                   <Card photo={restaurante} title="nome/restaurante"/>
-                   <Card photo={restaurante} title="nome/restaurante"/>
-                   <Card photo={restaurante} title="nome/restaurante"/>
-                   <Card photo={restaurante} title="nome/restaurante"/>
-                   <Card photo={restaurante} title="nome/restaurante"/>
-                   <Card photo={restaurante} title="nome/restaurante"/>
+
+                    {restaurants.map((restaurant)=> (
+                        <Card 
+                            key={restaurant.place_id} 
+                            photo={ restaurant.photos ? restaurant.photos[0].getUrl : restaurant}
+                            title={restaurant.name}
+                        />
+                    ))}
+                  
                 </Carousel>
-            </Search>                 
-            <RestaurantCard/>       
+            </Search>   
+
+                {restaurants.map((restaurant)=> (
+
+                    <RestaurantCard restaurant={restaurant} />
+
+                ))}      
         </Container>
-        <Map/>
+
+        <Map query={query}/>
+        
         {/* <Modal open={ modalOpened } onClose={() => setModalOpened( ! modalOpened)}   /> */}
     </WrapperGlobal>
 

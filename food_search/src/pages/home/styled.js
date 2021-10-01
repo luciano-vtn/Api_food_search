@@ -61,5 +61,15 @@ export const ModalTitle = styled.p`
     line-height: 29px;
     font-size: 24px;
     font-weight: bold;
+`;
+
+export const ModalContent = styled.p`
+    margin-bottom: 10px;
+    font-family: ${(props) => props.theme.fonts.regular};
+    color: ${(props) => props.theme.colors.text};
+   
+    font-weight: normal;
+    line-height: 19px;
+    font-size: 18px;
 
 `;

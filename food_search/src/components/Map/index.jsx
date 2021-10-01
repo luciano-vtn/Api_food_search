@@ -62,7 +62,7 @@ export const MapContainer = (props) => {
     }
   }, [placeId, getDetails]);
 
-  const searchNearby = (map, center) => {
+  function searchNearby(map, center){
     const service = new google.maps.places.PlacesService(map);
 
     const request = {

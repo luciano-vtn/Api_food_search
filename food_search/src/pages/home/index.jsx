@@ -9,19 +9,21 @@ import logo from "../../assets/logo.svg";
 import restaurante from "../../assets/restaurante-fake.png"
 import {Card, RestaurantCard, Modal, Map} from "../../components";
 
-import { Container, Carousel, Search, Logo, WrapperGlobal, CarouselTitle } from './styled';
+import { Container, Carousel, Search, Logo, WrapperGlobal, CarouselTitle, ModalTitle } from './styled';
 
 const Home = () => { 
 
     const [imputValue,  setImputValue] = useState('');
     const [query, setQuery] =  useState (null);
+    const [placeId, setPlaceId] = useState(null);
     const [modalOpened, setModalOpened] = useState(true);
 
-    const { restaurants } = useSelector ((state) => state.restaurants);
+    const { restaurants, restaurantSelected } = useSelector ((state) => state.restaurants);
 
     const settings = {
         dots: true,
         infinite: true,
+        autoplay: true,
         speed: 300,
         slidesToShow: 4,
         slidesToScroll: 4,
@@ -35,6 +37,11 @@ const Home = () => {
               setQuery(imputValue);
 
           }
+      }
+
+      function handleOpenModal(placeId) {
+          setPlaceId(placeId);
+          setModalOpened(true);
       }
 
     return(
@@ -60,7 +67,7 @@ const Home = () => {
                     {restaurants.map((restaurant)=> (
                         <Card 
                             key={restaurant.place_id} 
-                            photo={ restaurant.photos ? restaurant.photos[0].getUrl : restaurant}
+                            photo={ restaurant.photos ? restaurant.photos[0].getUrl : restaurante}
                             title={restaurant.name}
                         />
                     ))}
@@ -69,21 +76,24 @@ const Home = () => {
             </Search>   
 
                 {restaurants.map((restaurant)=> (
+                    <RestaurantCard 
+                        onClick={() => handleOpenModal (restaurant.place_id)}
+                        restaurant={restaurant} 
+                    />
+                ))}  
 
-                    <RestaurantCard restaurant={restaurant} />
-
-                ))}      
         </Container>
 
-        <Map query={query}/>
+            <Map query={query} placeId={placeId}/>
+  
+        <Modal open={ modalOpened }  onClose={() => setModalOpened (!modalOpened)}> 
+            <ModalTitle>{restaurantSelected?.name}</ModalTitle> 
+            <ModalTitle>{restaurantSelected?.formatted_phone_number}</ModalTitle>
+            <ModalTitle>{restaurantSelected?.formatted_address}</ModalTitle>       
+        </Modal>
         
-        {/* <Modal open={ modalOpened } onClose={() => setModalOpened( ! modalOpened)}   /> */}
-    </WrapperGlobal>
-
-        
+    </WrapperGlobal>   
     )
-};
-
-    
+};   
 
 export default Home;

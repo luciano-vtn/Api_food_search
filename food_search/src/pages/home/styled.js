@@ -38,8 +38,8 @@ export const Map = styled.div`
 `;
 
 export const Carousel = styled(Slider)`
-    .slick-styled{
-        margin-right: 5px;
+    .slick-slide{
+        margin-right:40px;
     }
 
 `;
@@ -51,4 +51,15 @@ export const CarouselTitle = styled.h1`
     font-weight: bold;
     line-height: 24px;
     margin: 16px 0;
+`;
+
+export const ModalTitle = styled.p`
+    margin-bottom: 10px;
+    letter-spacing: 0.11px;
+    font-family: ${(props) => props.theme.fonts.regular};
+    color: ${(props) => props.theme.colors.text};
+    line-height: 29px;
+    font-size: 24px;
+    font-weight: bold;
+
 `;

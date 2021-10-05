@@ -2,12 +2,12 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
 
-import { setRestaurants, setRestaurant } from '../../redux/modules/restaurants';
+import { setRestaurants, setRestaurant } from "../../redux/modules/restaurants";
 
 export const MapContainer = (props) => {
   const dispatch = useDispatch();
-  const [map, setMap] = useState(null);
   const { restaurants } = useSelector((state) => state.restaurants);
+  const [map, setMap] = useState(null);
   const { google, query, placeId } = props;
 
   const searchByQuery = useCallback(

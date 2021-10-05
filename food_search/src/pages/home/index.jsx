@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
 import TextField, {Input} from '@material/react-text-field';
 import MaterialIcon from '@material/react-material-icon';
@@ -7,7 +7,7 @@ import MaterialIcon from '@material/react-material-icon';
 
 import logo from "../../assets/logo.svg";
 import restaurante from "../../assets/restaurante-fake.png"
-import {Card, RestaurantCard, Modal, Map, Loader} from "../../components";
+import {Card, RestaurantCard, Modal, Map, Loader, ImageSkeleton} from "../../components";
 
 import { 
     Container, 
@@ -101,12 +101,22 @@ const Home = () => {
             <Map query={query} placeId={placeId}/>
   
         <Modal open={ modalOpened }  onClose={() => setModalOpened (!modalOpened)}> 
-            <ModalTitle>{restaurantSelected?.name}</ModalTitle> 
-            <ModalContent>{restaurantSelected?.formatted_phone_number}</ModalContent>
-            <ModalContent>{restaurantSelected?.formatted_address}</ModalContent>
-            <ModalContent>{restaurantSelected?.opening_hours?.open_now ? 'Aberto agora :-)' : 'Fechado.'}</ModalContent>       
-        </Modal>
-        
+              {restaurantSelected ? (
+                  <>
+                    <ModalTitle>{restaurantSelected?.name}</ModalTitle> 
+                    <ModalContent>{restaurantSelected?.formatted_phone_number}</ModalContent>
+                    <ModalContent>{restaurantSelected?.formatted_address}</ModalContent>
+                    <ModalContent>{restaurantSelected?.opening_hours?.open_now ? 'Aberto agora :-)' : 'Fechado.'}</ModalContent>                
+                  </>
+              ) : (
+                <>
+                    <ImageSkeleton width="10px" height="10px"/>
+                    <ImageSkeleton width="10px" height="10px"/>
+                    <ImageSkeleton width="10px" height="10px"/>
+                </>
+
+              )}                  
+        </Modal>        
     </WrapperGlobal>   
     )
 };   

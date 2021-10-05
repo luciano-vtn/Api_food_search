@@ -3,6 +3,7 @@
     "@material/react-material-icon": "^0.15.0",
     "@material/react-text-field": "^0.15.0",
     "google-maps-react": "^2.0.6",
+    "react-lottie": "^1.2.3",
     "react-rating-stars-component": "^2.2.0",
     "react-slick": "^0.28.1",
     "slick-carousel": "^1.8.1",

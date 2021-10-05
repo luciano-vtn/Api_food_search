@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
 
 import Portal from './Portal';
-import { Overlay, Dialog } from './styled';
+
+import { Overlay, Dialog } from './styles';
 
 const Modal = ({ children, open, onClose }) => {
   useEffect(() => {
-    function onEsc(event) {
-      if (event.keyCode === 27) onClose();
+    function onEsc(e) {
+      if (e.keyCode === 27) onClose();
     }
     window.addEventListener('keydown', onEsc);
 
     return () => {
-      window.addEventListener('keydown', onEsc);
+      window.removeEventListener('keydown', onEsc);
     };
   }, [onClose]);
 
@@ -21,8 +22,8 @@ const Modal = ({ children, open, onClose }) => {
     onClose();
   }
 
-  function onDialogClick(event) {
-    event.stopPropagation();
+  function onDialogClick(e) {
+    e.stopPropagation();
   }
 
   return (

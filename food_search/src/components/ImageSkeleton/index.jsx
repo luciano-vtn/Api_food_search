@@ -1,7 +1,8 @@
+/* eslint-disable import/no-anonymous-default-export */
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-const keyFrameLoading = keyframes`
+const KeyFrameLoading = keyframes`
   0% {
     opacity: 0.5;
   }
@@ -16,8 +17,7 @@ const LoadingSkeleton = styled.div`
   margin-bottom: 10px;
   min-width: ${(props) => props.width};
   height: ${(props) => props.height};
-  animation: ${keyFrameLoading} 500ms infinite alternate;
+  animation: ${KeyFrameLoading} 500ms infinite alternate;
 `;
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default ({ width, height }) => <LoadingSkeleton width={width} height={height} />;
